@@ -1,0 +1,6 @@
+<div class="cell">
+  <!-- <p>{{row}} - {{col}}</p> -->
+  <div *ngFor="let rol of rolesToShow" class="roles">
+    <img src="assets/images/{{rol}}.jpg" [class]="rol" />
+  </div>
+</div>

@@ -1,0 +1,21 @@
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.game-legend {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  
+  .game-legend-col {
+    display: flex;
+    flex-direction: column;
+    
+  }
+}
+
+.game-table {
+  display: flex;
+  justify-content: start;
+}

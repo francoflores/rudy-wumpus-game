@@ -1,0 +1,31 @@
+<div class="game-container">
+  <div class="game-legend">
+    <div class="game-legend-col">
+      <div>Presione <strong>&larr;</strong> para girar a la izquierda</div>
+      <div>Presione <strong>&rarr;</strong> para girar a la derecha</div>
+    </div>
+    <div class="game-legend-col">
+      <div>Presione <strong>Enter</strong> para avanzar</div>
+      <div>Presione <strong>Space</strong> para lanzar flecha</div>
+    </div>
+    <div class="game-legend-col">
+      <div>Apuntando hacia el: {{currentDirection}}</div>
+      <div>Flechas: {{properties.arrows}}</div>
+    </div>
+  </div>
+  <div class="game-table">
+    <div>
+      <div *ngFor="let row of cellMatrix" class="row">
+        <div *ngFor="let cell of row">
+          <app-cell-game [row]="cell.row" [col]="cell.col" [roles]="cell.roles"></app-cell-game>
+        </div>
+      </div>
+      <div>Apuntando hacia el: {{currentDirection}}</div>
+      <div>Flechas: {{properties.arrows}}</div>
+    </div>
+    <div>
+      <textarea [(ngModel)]="gamelog" rows="10" cols="40"></textarea>
+    </div>
+  </div>
+</div>
+

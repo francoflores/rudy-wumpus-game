@@ -1,0 +1,44 @@
+.cell {
+  width: 100px;
+  height: 100px;
+  min-width: 50px;
+  min-height: 50px;
+  border: 1px solid black;
+}
+
+.roles {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.Pozo {
+  max-width: 60px;
+  max-height: 60px;
+}
+
+.Hedor {
+  max-width: 60px;
+  max-height: 60px;
+}
+
+.Brisa {
+  max-width: 60px;
+  max-height: 40px;
+}
+
+.Wumpus {
+  max-width: 60px;
+  max-height: 60px;
+}
+
+.Oro {
+  max-width: 60px;
+  max-height: 60px;
+}
+
+.Cazador {
+  max-width: 60px;
+  max-height: 60px;
+}

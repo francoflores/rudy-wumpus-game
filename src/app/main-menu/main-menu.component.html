@@ -1,0 +1,15 @@
+<form [formGroup]="fgComponent" (submit)="onSubmit()">
+  <div>
+    <label for="">Cantidad de Filas y Columnas</label>
+    <input type="number" formControlName="sizeTable">
+  </div>
+  <div>
+    <label for="">Cantidad de Pozos</label>
+    <input type="number" formControlName="wells">
+  </div>
+  <div>
+    <label for="">Cantidad de Flechas</label>
+    <input type="number" formControlName="arrows">
+  </div>
+  <button type="submit">Jugar</button>
+</form>
