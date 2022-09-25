@@ -1,3 +1,3 @@
 <app-main-menu *ngIf="!play" (play)="onPlay($event)"></app-main-menu>
 <app-table-game *ngIf="play" [properties]="tableProperties"></app-table-game>
-<button *ngIf="play" (click)="onGoToMenu()">Exit</button>
+<button class="btn btn-primary" *ngIf="play" (click)="onGoToMenu()">Exit</button>

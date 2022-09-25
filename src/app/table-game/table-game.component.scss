@@ -1,21 +1,92 @@
-.row {
-  display: flex;
-  flex-direction: row;
-}
+// .row {
+//   display: flex;
+//   flex-direction: row;
+// }
 
-.game-legend {
+// .game-container {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+//   .game-legend {
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: space-evenly;
+
+//     .game-legend-col {
+//       display: flex;
+//       flex-direction: column;
+
+//     }
+//   }
+
+//   .game-table {
+//     display: flex;
+//     justify-content: start;
+//   }
+// }
+
+.container-game {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  
-  .game-legend-col {
-    display: flex;
-    flex-direction: column;
-    
+  justify-content: space-around;
+  padding-left: 5px;
+  padding-right: 5px;
+
+  > div {
+    border-top: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+    flex: 1;
+
+    font-size: 13px;
+    color: darkslategrey;
+    font-style: oblique;
+
+    &:nth-child(2) {
+      flex: 3;
+    }
+    &:nth-child(3) {
+      flex: 1;
+    }
+
+    &:last-child {
+      border-right: 1px solid #cccccc;
+    }
+
+
+    &:first-child {
+      flex: 1.5;
+      padding-left: 10px;
+    }
+
   }
-}
 
-.game-table {
-  display: flex;
-  justify-content: start;
+  .container-legend {
+    > div {
+      display: flex;
+      flex-direction: row;
+
+      p {
+        padding-left: 5px;
+      }
+
+      &:last-child {
+        flex-direction: column;
+      }
+    }
+  }
+
+  .container-table {
+
+    > div {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  textarea {
+    font-size: 13px;
+    color: darkslategrey;
+    font-style: oblique;
+  }
 }

@@ -1,4 +1,4 @@
-<div class="game-container">
+<!-- <div class="game-container">
   <div class="game-legend">
     <div class="game-legend-col">
       <div>Presione <strong>&larr;</strong> para girar a la izquierda</div>
@@ -16,7 +16,7 @@
   <div class="game-table">
     <div>
       <div *ngFor="let row of cellMatrix" class="row">
-        <div *ngFor="let cell of row">
+        <div *ngFor="let cell of row" class="col p-0">
           <app-cell-game [row]="cell.row" [col]="cell.col" [roles]="cell.roles"></app-cell-game>
         </div>
       </div>
@@ -27,5 +27,42 @@
       <textarea [(ngModel)]="gamelog" rows="10" cols="40"></textarea>
     </div>
   </div>
+</div> -->
+<div class="container-game mt-3">
+  <div class="container-legend">
+    <div>
+      <i class="bi bi-arrow-left-circle"></i>
+      <p>para girar a la izquierda</p>
+    </div>
+    <div>
+      <i class="bi bi-arrow-right-circle"></i>
+      <p>para girar a la derecha</p>
+    </div>
+    <div>
+      <i class="bi bi-arrow-return-left"></i>
+      <p>para avanzar</p>
+    </div>
+    <div>
+      <h6><span class="badge bg-secondary">space</span></h6>
+      <p>para lanzar flecha</p>
+    </div>
+    <div>
+      <div>Apuntando hacia el: <strong>{{currentDirection}}</strong></div>
+      <div>Flechas: <strong>{{properties.arrows}}</strong></div>
+    </div>
+  </div>
+  <div class="container-table">
+    <div *ngFor="let row of cellMatrix" >
+      <div *ngFor="let cell of row" class="col p-0 m-0">
+        <app-cell-game [row]="cell.row" [col]="cell.col" [roles]="cell.roles"></app-cell-game>
+      </div>
+    </div>
+  </div>
+  <div>
+    <textarea [(ngModel)]="gamelog" rows="30" cols="30"></textarea>
+  </div>
+  <!-- <div>
+    <button class="btn btn-primary">Exit</button>
+  </div> -->
 </div>
 

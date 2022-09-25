@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Properties } from './models/properties.model';
 
 @Component({
   selector: 'app-root',
@@ -8,13 +9,11 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'rudy-wumpus-game';
 
-
   play: boolean = false;
   tableProperties: any;
 
-  onPlay(event: any): void {
+  onPlay(event: Properties): void {
     this.play = true;
-    console.log(event);
     this.tableProperties = event;
   }
 

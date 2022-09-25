@@ -5,16 +5,20 @@ import {
   OnInit,
   HostListener
 } from '@angular/core';
+import { Properties } from '../models/properties.model';
 
 const getRandomPos = (min : number, max : number) => Math.floor(Math.random() * (max - min + 1)) + min;
 
-@Component({selector: 'app-table-game', templateUrl: './table-game.component.html', styleUrls: ['./table-game.component.scss']})
+@Component({
+  selector: 'app-table-game',
+  templateUrl: './table-game.component.html',
+  styleUrls: ['./table-game.component.scss']
+})
 export class TableGameComponent implements OnInit,
 OnDestroy {
 
   @HostListener('document:keyup', ['$event'])
   handleKeyboardEvent(event : KeyboardEvent) {
-    console.log(event);
     if(this.gameover) {
       return;
     }
@@ -67,9 +71,10 @@ OnDestroy {
   }
 
   cellMatrix : any[] = [];
-  @Input()properties : any;
+  @Input()
+  properties!: Properties;
 
-  idIntervalWumpus : number | undefined;
+  idIntervalWumpus!: number;
   currentDirection : string = 'east';
   gamelog: string = '';
   gameover: boolean = false;
@@ -77,11 +82,16 @@ OnDestroy {
   wumpusDead: boolean = false;
   goldTaked: boolean = false;
 
-  constructor() {}
+  constructor() {
+    this.properties = {
+      sizeTable: 0,
+      arrows: 3,
+      wells: 3,
+    }
+  }
 
   ngOnInit(): void {
-    console.log('This properties');
-    console.log(this.properties);
+    if(!this.properties || this.cellMatrix.length == 0) return;
     this.createMatrix(this.properties.sizeTable);
     this.setHunter();
     this.setWumpus();
@@ -188,7 +198,7 @@ OnDestroy {
       } else {
         clearInterval(this.idIntervalWumpus);
       }
-      
+
     }, 3000);
   }
 
@@ -273,6 +283,7 @@ OnDestroy {
   }
 
   private shootArrow(): void {
+    if(!this.properties) return;
     if (this.properties.arrows == 0) {
       this.gamelog += 'No hay mas flechas\n';
       return;
@@ -313,7 +324,8 @@ OnDestroy {
     }
 
     if(this.wumpusDead) {
-      this.gamelog += 'Wumpus is depth by your arrow!!!\n'
+      this.gamelog += 'Wumpus murio por tu flecha!!\n';
+      this.cleanHedor();
     }
   }
 
@@ -411,7 +423,7 @@ OnDestroy {
     if(this.goldTaked && rowIndex == this.properties.sizeTable - 1 && colIndex == 0) {
       this.gamewon = true;
       this.gamelog += 'YOU WIN!!!\n';
-    } 
+    }
   }
 
   private isGameOver(): void {
@@ -445,7 +457,7 @@ OnDestroy {
     if(row == 0) {
       this.gamelog += 'Pared superior\n';
       return;
-    } 
+    }
 
     let currencIndex = this.cellMatrix[row][col].roles.indexOf('Cazador');
     this.cellMatrix[row][col].roles.splice(currencIndex, 1);
@@ -457,7 +469,7 @@ OnDestroy {
     if(row == this.properties.sizeTable - 1) {
       this.gamelog += 'Pared inferior\n';
       return;
-    } 
+    }
 
     let currencIndex = this.cellMatrix[row][col].roles.indexOf('Cazador');
     this.cellMatrix[row][col].roles.splice(currencIndex, 1);
