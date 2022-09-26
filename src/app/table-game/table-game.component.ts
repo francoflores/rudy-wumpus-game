@@ -3,7 +3,8 @@ import {
   Input,
   OnDestroy,
   OnInit,
-  HostListener
+  HostListener,
+  AfterViewInit
 } from '@angular/core';
 import { Properties } from '../models/properties.model';
 
@@ -15,7 +16,7 @@ const getRandomPos = (min : number, max : number) => Math.floor(Math.random() * 
   styleUrls: ['./table-game.component.scss']
 })
 export class TableGameComponent implements OnInit,
-OnDestroy {
+OnDestroy, AfterViewInit {
 
   @HostListener('document:keyup', ['$event'])
   handleKeyboardEvent(event : KeyboardEvent) {
@@ -91,7 +92,18 @@ OnDestroy {
   }
 
   ngOnInit(): void {
-    if(!this.properties || this.cellMatrix.length == 0) return;
+    //if(!this.properties || this.cellMatrix.length == 0) return;
+    // this.createMatrix(this.properties.sizeTable);
+    // this.setHunter();
+    // this.setWumpus();
+    // this.setGold();
+    // this.setWells();
+
+    // this.activeWumpus();
+
+  }
+
+  ngAfterViewInit(): void {
     this.createMatrix(this.properties.sizeTable);
     this.setHunter();
     this.setWumpus();
@@ -99,7 +111,6 @@ OnDestroy {
     this.setWells();
 
     this.activeWumpus();
-
   }
 
   ngOnDestroy(): void {
@@ -116,10 +127,12 @@ OnDestroy {
   }
 
   private setHunter(): void {
+    if(this.cellMatrix.length == 0) return;
     this.cellMatrix[this.properties.sizeTable - 1][0].roles.push('Cazador');
   }
 
   private setWumpus(): void {
+    if(this.cellMatrix.length == 0) return;
     let row = getRandomPos(0, this.properties.sizeTable - 2);
     let col = getRandomPos(0, this.properties.sizeTable - 1);
     this.cellMatrix[row][col].roles.push('Wumpus');
@@ -127,6 +140,7 @@ OnDestroy {
   }
 
   private setGold(): void {
+    if(this.cellMatrix.length == 0) return;
     let notFound = true;
     while (notFound) {
       let row = getRandomPos(0, this.properties.sizeTable - 1);
@@ -154,6 +168,7 @@ OnDestroy {
   }
 
   private setWells(): void {
+    if(this.cellMatrix.length == 0) return;
     let i = 0;
     let max = this.properties.sizeTable - 1;
     while (i < this.properties.wells) {
